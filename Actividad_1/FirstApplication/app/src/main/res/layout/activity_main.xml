@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20sp"
+    tools:context="dev.miguel.firstapplication.MainActivity">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/title"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/EditTextFullName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:hint="@string/name"
+        android:autofillHints=""
+        android:inputType="text"
+        tools:ignore="TextFields" />
+    <EditText
+        android:id="@+id/EditTextEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EditTextFullName"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
+    <EditText
+        android:id="@+id/EditTextPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EditTextEmail"
+        android:layout_marginTop="20sp"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="" />
+    <Button
+        android:id="@+id/ButtonRegister"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/EditTextPassword"
+        android:layout_marginTop="20sp"
+        android:text="@string/sign_in" />
+
+    <TextView
+        android:id="@+id/LabelResponse"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="325sp"
+        android:gravity="center_horizontal"
+        android:text="@string/message"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+</RelativeLayout>
