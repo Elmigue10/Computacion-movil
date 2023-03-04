@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     // Creating Progress dialog.
     ProgressDialog progressDialog;
     // Storing server url into String variable.
-    String HttpUrl = "http://192.168.20.22:8080/api/v1/save";
+    String HttpUrl = "http://192.168.20.162:8080/api/v1/save";
     Boolean CheckEditText ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

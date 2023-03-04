@@ -27,9 +27,7 @@ public class MobileService {
     public List<MobileDTO> findAll() {
         List<MobileEntity> entities = mobileRespository.findAll();
         List<MobileDTO> mobileDTOList = new ArrayList<>();
-        entities.forEach( entity -> {
-            mobileDTOList.add(mobileMapper.entityToDto(entity));
-        });
+        entities.forEach( entity -> mobileDTOList.add(mobileMapper.entityToDto(entity)));
         return mobileDTOList;
     }
 }
