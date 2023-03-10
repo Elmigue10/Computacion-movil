@@ -44,33 +44,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent sensorEvent) {
         textViewTemperature.setText(sensorEvent.values[0] + " °C");
         if(sensorEvent.values[0] < -15){
-            textViewTemperature.setTextColor(Color.CYAN);
-            textViewMessage.setTextColor(Color.CYAN);
+            getWindow().getDecorView().setBackgroundColor(Color.CYAN);
             textViewMessage.setText("Too cold, it's dangerous 🥶😵");
         }
         if(sensorEvent.values[0] > -15 && sensorEvent.values[0] < 0){
-            textViewTemperature.setTextColor(Color.BLUE);
-            textViewMessage.setTextColor(Color.BLUE);
+            getWindow().getDecorView().setBackgroundColor(Color.BLUE);
             textViewMessage.setText("It's cold, bundle up 🧣🧤");
         }
         if(sensorEvent.values[0] > 0 && sensorEvent.values[0] < 15){
-            textViewTemperature.setTextColor(Color.GREEN);
-            textViewMessage.setTextColor(Color.GREEN);
+            getWindow().getDecorView().setBackgroundColor(Color.GREEN);
             textViewMessage.setText("Cool weather 🍃");
         }
         if(sensorEvent.values[0] > 15 && sensorEvent.values[0] < 25){
-            textViewTemperature.setTextColor(Color.YELLOW);
-            textViewMessage.setTextColor(Color.YELLOW);
+            getWindow().getDecorView().setBackgroundColor(Color.YELLOW);
             textViewMessage.setText("Pleasant weather 😎");
         }
         if(sensorEvent.values[0] > 25 && sensorEvent.values[0] < 35){
-            textViewTemperature.setTextColor(Color.parseColor("#FF9300"));
-            textViewMessage.setTextColor(Color.parseColor("#FF9300"));
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FF9300"));
             textViewMessage.setText("It's hot 🕶️🩳🩴");
         }
         if(sensorEvent.values[0] > 35){
-            textViewTemperature.setTextColor(Color.RED);
-            textViewMessage.setTextColor(Color.RED);
+            getWindow().getDecorView().setBackgroundColor(Color.RED);
             textViewMessage.setText("Too hot, it's dangerous 🥵😵");
         }
     }
