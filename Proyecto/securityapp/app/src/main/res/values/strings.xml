@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Security App</string>
+    <string name="title">Security App 🔒</string>
+    <string name="password_hint">Password...</string>
+    <string name="username_hint">Username...</string>
+    <string name="log_in">LOG IN</string>
+    <string name="log_out">LOG OUT ❌</string>
+    <string name="owners">OWNERS 🗝️</string>
+    <string name="vehicles">VEHICLES 🚲</string>
+    <string name="storage_management">STORAGE MANAGEMENT 💾</string>
+    <string name="users_management">USERS MANAGEMENT 🪪</string>
+    <string name="judicial_report">JUDICIAL REPORT 👮🏻</string>
+</resources>
