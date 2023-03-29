@@ -14,8 +14,10 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        findViewById(R.id.log_out_button).setOnClickListener( e -> {
-            startActivity(new Intent(HomeActivity.this, AuthActivity.class));
-        });
+        findViewById(R.id.storage_management_button).setOnClickListener( e -> startActivity(
+                new Intent(HomeActivity.this, StorageManagementActivity.class)));
+
+        findViewById(R.id.log_out_button).setOnClickListener( e -> startActivity(
+                new Intent(HomeActivity.this, AuthActivity.class)));
     }
 }

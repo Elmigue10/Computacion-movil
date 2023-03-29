@@ -13,6 +13,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="33">
         <activity
+            android:name=".activity.StorageManagementActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.HomeActivity"
             android:exported="false">
             <meta-data

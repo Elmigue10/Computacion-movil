@@ -10,4 +10,5 @@
     <string name="storage_management">STORAGE MANAGEMENT 💾</string>
     <string name="users_management">USERS MANAGEMENT 🪪</string>
     <string name="judicial_report">JUDICIAL REPORT 👮🏻</string>
+    <string name="search_by_identification">Search by identification...</string>
 </resources>
