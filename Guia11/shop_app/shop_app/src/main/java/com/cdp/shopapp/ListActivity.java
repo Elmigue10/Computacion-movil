@@ -30,8 +30,8 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtTelefono);
-        txtCorreo = findViewById(R.id.txtCorreoElectronico);
+        txtTelefono = findViewById(R.id.txtPrecioUnitario);
+        txtCorreo = findViewById(R.id.txtUnidadesStock);
         fabEditar = findViewById(R.id.fabEditar);
         fabEliminar = findViewById(R.id.fabEliminar);
         btnGuarda = findViewById(R.id.btnGuarda);
@@ -53,8 +53,8 @@ public class ListActivity extends AppCompatActivity {
 
         if(product != null){
             txtNombre.setText(product.getNombre());
-            txtTelefono.setText(product.getTelefono());
-            txtCorreo.setText(product.getCorreo_electornico());
+            txtTelefono.setText(product.getPrecioUnitario());
+            txtCorreo.setText(product.getUnidadesStock());
             txtNombre.setInputType(InputType.TYPE_NULL);
             txtTelefono.setInputType(InputType.TYPE_NULL);
             txtCorreo.setInputType(InputType.TYPE_NULL);

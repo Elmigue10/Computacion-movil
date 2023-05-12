@@ -28,34 +28,40 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/viewTelefono"
+            android:id="@+id/viewPrecioUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hint_telefono" />
+            android:text="@string/hint_precio_unitario" />
 
         <EditText
-            android:id="@+id/txtTelefono"
+            android:id="@+id/txtPrecioUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="phone"
-            android:labelFor="@+id/viewTelefono"
+            android:labelFor="@+id/viewPrecioUnitario"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/viewCorreo"
+            android:id="@+id/viewUnidadesStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/hint_correo_electronico" />
+            android:text="@string/hint_unidades_stock" />
 
         <EditText
-            android:id="@+id/txtCorreoElectronico"
+            android:id="@+id/txtUnidadesStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:labelFor="@+id/viewCorreo"
+            android:labelFor="@+id/viewUnidadesStock"
             android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/viewCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hint_categoria" />
 
         <Button
             android:id="@+id/btnGuarda"

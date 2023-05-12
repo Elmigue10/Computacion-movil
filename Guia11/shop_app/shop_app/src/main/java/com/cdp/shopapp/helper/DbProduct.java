@@ -57,8 +57,8 @@ public class DbProduct extends DbHelper {
                 product = new Product();
                 product.setId(productCursor.getInt(0));
                 product.setNombre(productCursor.getString(1));
-                product.setTelefono(productCursor.getString(2));
-                product.setCorreo_electornico(productCursor.getString(3));
+                product.setPrecioUnitario(productCursor.getString(2));
+                product.setUnidadesStock(productCursor.getString(3));
                 productList.add(product);
             } while (productCursor.moveToNext());
         }
@@ -82,8 +82,8 @@ public class DbProduct extends DbHelper {
             product = new Product();
             product.setId(productCursor.getInt(0));
             product.setNombre(productCursor.getString(1));
-            product.setTelefono(productCursor.getString(2));
-            product.setCorreo_electornico(productCursor.getString(3));
+            product.setPrecioUnitario(productCursor.getString(2));
+            product.setUnidadesStock(productCursor.getString(3));
         }
 
         productCursor.close();

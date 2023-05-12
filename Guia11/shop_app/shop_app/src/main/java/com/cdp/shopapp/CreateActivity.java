@@ -21,8 +21,8 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtTelefono);
-        txtCorreoElectronico = findViewById(R.id.txtCorreoElectronico);
+        txtTelefono = findViewById(R.id.txtPrecioUnitario);
+        txtCorreoElectronico = findViewById(R.id.txtUnidadesStock);
         btnGuarda = findViewById(R.id.btnGuarda);
 
         btnGuarda.setOnClickListener(new View.OnClickListener() {

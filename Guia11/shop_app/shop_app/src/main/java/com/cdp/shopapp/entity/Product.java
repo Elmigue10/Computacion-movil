@@ -4,8 +4,9 @@ public class Product {
 
     private int id;
     private String nombre;
-    private String telefono;
-    private String correo_electornico;
+    private String precioUnitario;
+    private String unidadesStock;
+    private String categoria;
 
     public int getId() {
         return id;
@@ -23,19 +24,27 @@ public class Product {
         this.nombre = nombre;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getPrecioUnitario() {
+        return precioUnitario;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPrecioUnitario(String precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
-    public String getCorreo_electornico() {
-        return correo_electornico;
+    public String getUnidadesStock() {
+        return unidadesStock;
     }
 
-    public void setCorreo_electornico(String correo_electornico) {
-        this.correo_electornico = correo_electornico;
+    public void setUnidadesStock(String unidadesStock) {
+        this.unidadesStock = unidadesStock;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 }

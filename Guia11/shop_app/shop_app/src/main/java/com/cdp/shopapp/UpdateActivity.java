@@ -30,8 +30,8 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtTelefono);
-        txtCorreo = findViewById(R.id.txtCorreoElectronico);
+        txtTelefono = findViewById(R.id.txtPrecioUnitario);
+        txtCorreo = findViewById(R.id.txtUnidadesStock);
         btnGuarda = findViewById(R.id.btnGuarda);
         fabEditar = findViewById(R.id.fabEditar);
         fabEditar.setVisibility(View.INVISIBLE);
@@ -54,25 +54,22 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (product != null) {
             txtNombre.setText(product.getNombre());
-            txtTelefono.setText(product.getTelefono());
-            txtCorreo.setText(product.getCorreo_electornico());
+            txtTelefono.setText(product.getPrecioUnitario());
+            txtCorreo.setText(product.getUnidadesStock());
         }
 
-        btnGuarda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
-                    correcto = dbProduct.updateProduct(id, txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
+        btnGuarda.setOnClickListener(view -> {
+            if (!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
+                correcto = dbProduct.updateProduct(id, txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
 
-                    if(correcto){
-                        Toast.makeText(UpdateActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
-                        verRegistro();
-                    } else {
-                        Toast.makeText(UpdateActivity.this, "ERROR AL MODIFICAR REGISTRO", Toast.LENGTH_LONG).show();
-                    }
+                if(correcto){
+                    Toast.makeText(UpdateActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
+                    verRegistro();
                 } else {
-                    Toast.makeText(UpdateActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateActivity.this, "ERROR AL MODIFICAR REGISTRO", Toast.LENGTH_LONG).show();
                 }
+            } else {
+                Toast.makeText(UpdateActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
             }
         });
     }

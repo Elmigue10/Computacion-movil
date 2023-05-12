@@ -39,8 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.viewNombre.setText(productList.get(position).getNombre());
-        holder.viewTelefono.setText(productList.get(position).getTelefono());
-        holder.viewCorreo.setText(productList.get(position).getCorreo_electornico());
+        holder.viewTelefono.setText(productList.get(position).getPrecioUnitario());
+        holder.viewCorreo.setText(productList.get(position).getUnidadesStock());
     }
 
     public void filtrado(final String txtBuscar) {
