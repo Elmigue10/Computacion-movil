@@ -11,11 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cdp.shopapp.R;
-import com.cdp.shopapp.ListActivity;
+import com.cdp.shopapp.DetailActivity;
 import com.cdp.shopapp.entity.Product;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
@@ -32,15 +34,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_product_item, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_product_item,
+                null, false);
         return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.viewNombre.setText(productList.get(position).getNombre());
-        holder.viewPrecioUnitario.setText(productList.get(position).getPrecioUnitario());
-        holder.viewUnidadesStock.setText(productList.get(position).getUnidadesStock());
+        double valor = Double.parseDouble(productList.get(position).getPrecioUnitario());
+        NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(Locale.US);
+        String precio = formatoMoneda.format(valor);
+        precio = precio.replace(".00", "");
+        holder.viewPrecioUnitario.setText(precio);
+        holder.viewUnidadesStock.setText("Stock: " + productList.get(position).getUnidadesStock());
+        holder.viewCategoria.setText("Categoria: " + productList.get(position).getCategoria());
     }
 
     public void filtrado(final String txtBuscar) {
@@ -73,7 +81,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewPrecioUnitario, viewUnidadesStock;
+        TextView viewNombre, viewPrecioUnitario, viewUnidadesStock, viewCategoria;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,10 +89,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             viewNombre = itemView.findViewById(R.id.viewNombre);
             viewPrecioUnitario = itemView.findViewById(R.id.viewPrecioUnitario);
             viewUnidadesStock = itemView.findViewById(R.id.viewUnidadesStock);
+            viewCategoria = itemView.findViewById(R.id.viewCategoria);
 
             itemView.setOnClickListener(view -> {
                 Context context = view.getContext();
-                Intent intent = new Intent(context, ListActivity.class);
+                Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra("ID", productList.get(getAdapterPosition()).getId());
                 context.startActivity(intent);
             });

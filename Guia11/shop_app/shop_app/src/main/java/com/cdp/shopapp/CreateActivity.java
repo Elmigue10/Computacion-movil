@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cdp.shopapp.helper.DbProduct;
@@ -13,6 +15,7 @@ import com.cdp.shopapp.helper.DbProduct;
 public class CreateActivity extends AppCompatActivity {
 
     EditText txtNombre, txtPrecioUnitario, txtUnidadesStock;
+    Spinner spinnerCategorias;
     Button btnGuarda;
 
     @Override
@@ -23,6 +26,15 @@ public class CreateActivity extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtNombre);
         txtPrecioUnitario = findViewById(R.id.txtPrecioUnitario);
         txtUnidadesStock = findViewById(R.id.txtUnidadesStock);
+
+        spinnerCategorias = findViewById(R.id.spinner_categoria);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+                .createFromResource(this, R.array.categorias,
+                        android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        spinnerCategorias.setAdapter(spinnerAdapter);
+
         btnGuarda = findViewById(R.id.btnGuarda);
 
         btnGuarda.setOnClickListener(view -> {
@@ -31,7 +43,9 @@ public class CreateActivity extends AppCompatActivity {
 
                 DbProduct dbProduct = new DbProduct(CreateActivity.this);
                 long id = dbProduct.createProduct(txtNombre.getText().toString(),
-                        txtPrecioUnitario.getText().toString(), txtUnidadesStock.getText().toString());
+                        txtPrecioUnitario.getText().toString(),
+                        txtUnidadesStock.getText().toString(),
+                        spinnerCategorias.getSelectedItem().toString());
 
                 if (id > 0) {
                     Toast.makeText(CreateActivity.this, "REGISTRO GUARDADO",

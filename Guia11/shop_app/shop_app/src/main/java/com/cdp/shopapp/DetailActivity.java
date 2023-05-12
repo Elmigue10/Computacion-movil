@@ -1,6 +1,8 @@
 package com.cdp.shopapp;
 
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,25 +10,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.cdp.shopapp.helper.DbProduct;
 import com.cdp.shopapp.entity.Product;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class UpdateActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
     EditText txtNombre, txtPrecioUnitario, txtUnidadesStock;
     Spinner spinnerCategorias;
     Button btnGuarda;
     FloatingActionButton fabEditar, fabEliminar;
-    boolean correcto = false;
+
     Product product;
     int id = 0;
 
-    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +44,12 @@ public class UpdateActivity extends AppCompatActivity {
 
         btnGuarda = findViewById(R.id.btnGuarda);
         fabEditar = findViewById(R.id.fabEditar);
-        fabEditar.setVisibility(View.INVISIBLE);
         fabEliminar = findViewById(R.id.fabEliminar);
-        fabEliminar.setVisibility(View.INVISIBLE);
+        btnGuarda.setVisibility(View.INVISIBLE);
 
-        if (savedInstanceState == null) {
+        if(savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
-            if (extras == null) {
+            if(extras == null){
                 id = Integer.parseInt(null);
             } else {
                 id = extras.getInt("ID");
@@ -61,39 +58,38 @@ public class UpdateActivity extends AppCompatActivity {
             id = (int) savedInstanceState.getSerializable("ID");
         }
 
-        final DbProduct dbProduct = new DbProduct(UpdateActivity.this);
+        final DbProduct dbProduct = new DbProduct(DetailActivity.this);
         product = dbProduct.listProduct(id);
 
-        if (product != null) {
+        if(product != null){
             txtNombre.setText(product.getNombre());
             txtPrecioUnitario.setText(product.getPrecioUnitario());
             txtUnidadesStock.setText(product.getUnidadesStock());
             spinnerCategorias.setSelection(getCategoria(product));
+            txtNombre.setEnabled(false);
+            txtPrecioUnitario.setEnabled(false);
+            txtUnidadesStock.setEnabled(false);
+            spinnerCategorias.setEnabled(false);
         }
 
-        btnGuarda.setOnClickListener(view -> {
-            if (!txtNombre.getText().toString().equals("") && !txtPrecioUnitario.getText().toString().equals("")) {
-                correcto = dbProduct.updateProduct(id, txtNombre.getText().toString(),
-                        txtPrecioUnitario.getText().toString(),
-                        txtUnidadesStock.getText().toString(),
-                        spinnerCategorias.getSelectedItem().toString());
-
-                if(correcto){
-                    Toast.makeText(UpdateActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();
-                    verRegistro();
-                } else {
-                    Toast.makeText(UpdateActivity.this, "ERROR AL MODIFICAR REGISTRO", Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Toast.makeText(UpdateActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
-            }
+        fabEditar.setOnClickListener(view -> {
+            Intent intent =
+                    new Intent(DetailActivity.this, UpdateActivity.class);
+            intent.putExtra("ID", id);
+            startActivity(intent);
         });
-    }
 
-    private void verRegistro(){
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("ID", id);
-        startActivity(intent);
+        fabEliminar.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(DetailActivity.this);
+            builder.setMessage("¿Desea eliminar este producto?")
+                    .setPositiveButton("SI", (dialogInterface, i) -> {
+                        if(dbProduct.deleteProduct(id)){
+                            lista();
+                        }
+                    })
+                    .setNegativeButton("NO", (dialogInterface, i) -> {
+                    }).show();
+        });
     }
 
     private int getCategoria(Product product) {
@@ -111,5 +107,10 @@ public class UpdateActivity extends AppCompatActivity {
             return indiceCategoria;
         }
         return 0;
+    }
+
+    private void lista(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

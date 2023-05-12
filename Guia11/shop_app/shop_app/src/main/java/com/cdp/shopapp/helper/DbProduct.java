@@ -20,7 +20,8 @@ public class DbProduct extends DbHelper {
         this.context = context;
     }
 
-    public long createProduct(String nombre, String precioUnitario, String unidadesStock) {
+    public long createProduct(String nombre, String precioUnitario, String unidadesStock,
+                              String categoria) {
 
         long id = 0;
 
@@ -32,7 +33,7 @@ public class DbProduct extends DbHelper {
             values.put("nombre", nombre);
             values.put("precioUnitario", precioUnitario);
             values.put("unidadesStock", unidadesStock);
-            values.put("categoria", "cualquiera");
+            values.put("categoria", categoria);
 
             id = db.insert(TABLE_PRODUCT, null, values);
         } catch (Exception ex) {
@@ -61,6 +62,7 @@ public class DbProduct extends DbHelper {
                 product.setNombre(productCursor.getString(1));
                 product.setPrecioUnitario(productCursor.getString(2));
                 product.setUnidadesStock(productCursor.getString(3));
+                product.setCategoria(productCursor.getString(4));
                 productList.add(product);
             } while (productCursor.moveToNext());
         }
@@ -86,6 +88,7 @@ public class DbProduct extends DbHelper {
             product.setNombre(productCursor.getString(1));
             product.setPrecioUnitario(productCursor.getString(2));
             product.setUnidadesStock(productCursor.getString(3));
+            product.setCategoria(productCursor.getString(4));
         }
 
         productCursor.close();
@@ -93,7 +96,8 @@ public class DbProduct extends DbHelper {
         return product;
     }
 
-    public boolean updateProduct(int id, String nombre, String precioUnitario, String unidadesStock) {
+    public boolean updateProduct(int id, String nombre, String precioUnitario,
+                                 String unidadesStock, String categoria) {
 
         boolean correcto;
 
@@ -102,7 +106,8 @@ public class DbProduct extends DbHelper {
 
         try {
             db.execSQL("UPDATE " + TABLE_PRODUCT + " SET nombre = '" + nombre + "', precioUnitario = '" +
-                    precioUnitario + "', unidadesStock = '" + unidadesStock + "' WHERE id='" + id + "' ");
+                    precioUnitario + "', unidadesStock = '" + unidadesStock + "', categoria = '" +
+                    categoria +  "' WHERE id='" + id + "' ");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

@@ -4,18 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".VerActivity">
+    tools:context=".DetailActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".9"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/viewNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="#000000"
             android:text="@string/hint_nombre" />
 
         <EditText
@@ -23,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="text"
+            android:textColor="#000000"
             android:labelFor="@+id/viewNombre"
             android:textSize="18sp" />
 
@@ -31,6 +34,8 @@
             android:id="@+id/viewPrecioUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="#000000"
             android:text="@string/hint_precio_unitario" />
 
         <EditText
@@ -38,7 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="phone"
+            android:inputType="text"
+            android:textColor="#000000"
             android:labelFor="@+id/viewPrecioUnitario"
             android:textSize="18sp" />
 
@@ -46,6 +52,8 @@
             android:id="@+id/viewUnidadesStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="#000000"
             android:text="@string/hint_unidades_stock" />
 
         <EditText
@@ -53,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
+            android:textColor="#000000"
             android:labelFor="@+id/viewUnidadesStock"
             android:textSize="18sp" />
 
@@ -61,14 +70,27 @@
             android:id="@+id/viewCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="#000000"
             android:text="@string/hint_categoria" />
+
+        <Spinner
+            android:id="@+id/spinner_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:spinnerMode="dropdown"/>
 
         <Button
             android:id="@+id/btnGuarda"
-            android:layout_width="wrap_content"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/btn_guarda" />
+            android:text="@string/btn_guarda"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/button_rounded"
+            android:textColor="#FFFFFFFF"
+            android:textSize="18sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabEditar"
@@ -87,20 +109,4 @@
             android:src="@drawable/ic_delete" />
 
     </LinearLayout>
-<!--
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        tools:ignore="BottomAppBar">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_edit" />
-
-    </com.google.android.material.bottomappbar.BottomAppBar>-->
 </LinearLayout>

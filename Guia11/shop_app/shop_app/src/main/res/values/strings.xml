@@ -4,6 +4,13 @@
     <string name="hint_precio_unitario">Precio Unitario:</string>
     <string name="hint_unidades_stock">Unidades En Stock:</string>
     <string name="hint_categoria">Categoria:</string>
-    <string name="btn_guarda">Guardar registro</string>
+    <string name="btn_guarda">Guardar</string>
     <string name="menu_nuevo">Nuevo registro</string>
+    <string-array name="categorias">
+        <item>Perifericos</item>
+        <item>Sonido</item>
+        <item>Procesadores</item>
+        <item>Graficas</item>
+        <item>Almacenamiento</item>
+    </string-array>
 </resources>
