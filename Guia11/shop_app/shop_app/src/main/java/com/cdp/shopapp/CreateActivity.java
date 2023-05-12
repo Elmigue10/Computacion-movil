@@ -32,7 +32,6 @@ public class CreateActivity extends AppCompatActivity {
                 .createFromResource(this, R.array.categorias,
                         android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-
         spinnerCategorias.setAdapter(spinnerAdapter);
 
         btnGuarda = findViewById(R.id.btnGuarda);

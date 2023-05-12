@@ -43,7 +43,7 @@ public class DbProduct extends DbHelper {
         return id;
     }
 
-    public ArrayList<Product> showProducts() {
+    public ArrayList<Product> showProducts(String categoria) {
 
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -52,8 +52,15 @@ public class DbProduct extends DbHelper {
         Product product;
         Cursor productCursor;
 
-        productCursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT + " ORDER BY nombre ASC",
-                null);
+        if (categoria.equals("Todos")){
+            productCursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT + " ORDER BY nombre ASC",
+                    null);
+        } else {
+            productCursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT +
+                            " WHERE categoria = '" + categoria + "' ORDER BY nombre ASC",
+                    null);
+        }
+
 
         if (productCursor.moveToFirst()) {
             do {

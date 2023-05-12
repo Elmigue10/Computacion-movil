@@ -10,7 +10,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.SearchView;
+import android.widget.Spinner;
 
 import com.cdp.shopapp.adapter.ProductAdapter;
 import com.cdp.shopapp.helper.DbProduct;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     SearchView txtBuscar;
+    Spinner spinnerCategorias;
     RecyclerView recyclerViewProduct;
     ArrayList<Product> productList;
     FloatingActionButton fabNuevo;
@@ -32,6 +36,14 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtBuscar = findViewById(R.id.txtBuscar);
+
+        spinnerCategorias = findViewById(R.id.spinner_categoria);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter
+                .createFromResource(this, R.array.filtro_categorias,
+                        android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinnerCategorias.setAdapter(spinnerAdapter);
+
         recyclerViewProduct = findViewById(R.id.productList);
         fabNuevo = findViewById(R.id.favNuevo);
         recyclerViewProduct.setLayoutManager(new LinearLayoutManager(this));
@@ -40,12 +52,28 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 
         productList = new ArrayList<>();
 
-        adapter = new ProductAdapter(dbProduct.showProducts());
+        adapter = new ProductAdapter(dbProduct
+                .showProducts(spinnerCategorias.getSelectedItem().toString()));
         recyclerViewProduct.setAdapter(adapter);
 
         fabNuevo.setOnClickListener(view -> nuevoRegistro());
 
         txtBuscar.setOnQueryTextListener(this);
+        spinnerCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Este método se ejecuta cuando cambia la selección del Spinner
+                String itemSeleccionado = parent.getItemAtPosition(position).toString();
+                adapter = new ProductAdapter(dbProduct
+                        .showProducts(itemSeleccionado));
+                recyclerViewProduct.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

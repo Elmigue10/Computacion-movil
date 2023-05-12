@@ -13,4 +13,12 @@
         <item>Graficas</item>
         <item>Almacenamiento</item>
     </string-array>
+    <string-array name="filtro_categorias">
+        <item>Todos</item>
+        <item>Perifericos</item>
+        <item>Sonido</item>
+        <item>Procesadores</item>
+        <item>Graficas</item>
+        <item>Almacenamiento</item>
+    </string-array>
 </resources>
