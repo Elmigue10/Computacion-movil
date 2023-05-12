@@ -3,7 +3,6 @@ package com.cdp.shopapp;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -17,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ListActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtTelefono, txtCorreo;
+    EditText txtNombre, txtPrecioUnitario, txtUnidadesStock;
     Button btnGuarda;
     FloatingActionButton fabEditar, fabEliminar;
 
@@ -30,8 +29,8 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtPrecioUnitario);
-        txtCorreo = findViewById(R.id.txtUnidadesStock);
+        txtPrecioUnitario = findViewById(R.id.txtPrecioUnitario);
+        txtUnidadesStock = findViewById(R.id.txtUnidadesStock);
         fabEditar = findViewById(R.id.fabEditar);
         fabEliminar = findViewById(R.id.fabEliminar);
         btnGuarda = findViewById(R.id.btnGuarda);
@@ -53,11 +52,11 @@ public class ListActivity extends AppCompatActivity {
 
         if(product != null){
             txtNombre.setText(product.getNombre());
-            txtTelefono.setText(product.getPrecioUnitario());
-            txtCorreo.setText(product.getUnidadesStock());
+            txtPrecioUnitario.setText(product.getPrecioUnitario());
+            txtUnidadesStock.setText(product.getUnidadesStock());
             txtNombre.setInputType(InputType.TYPE_NULL);
-            txtTelefono.setInputType(InputType.TYPE_NULL);
-            txtCorreo.setInputType(InputType.TYPE_NULL);
+            txtPrecioUnitario.setInputType(InputType.TYPE_NULL);
+            txtUnidadesStock.setInputType(InputType.TYPE_NULL);
         }
 
         fabEditar.setOnClickListener(new View.OnClickListener() {
@@ -75,20 +74,12 @@ public class ListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(com.cdp.shopapp.ListActivity.this);
                 builder.setMessage("¿Desea eliminar este producto?")
-                        .setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                if(dbProduct.deleteProduct(id)){
-                                    lista();
-                                }
+                        .setPositiveButton("SI", (dialogInterface, i) -> {
+                            if(dbProduct.deleteProduct(id)){
+                                lista();
                             }
                         })
-                        .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                            }
+                        .setNegativeButton("NO", (dialogInterface, i) -> {
                         }).show();
             }
         });

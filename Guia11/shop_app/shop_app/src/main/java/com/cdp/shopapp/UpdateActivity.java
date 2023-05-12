@@ -16,7 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class UpdateActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtTelefono, txtCorreo;
+    EditText txtNombre, txtPrecioUnitario, txtUnidadesStock;
     Button btnGuarda;
     FloatingActionButton fabEditar, fabEliminar;
     boolean correcto = false;
@@ -30,8 +30,8 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtPrecioUnitario);
-        txtCorreo = findViewById(R.id.txtUnidadesStock);
+        txtPrecioUnitario = findViewById(R.id.txtPrecioUnitario);
+        txtUnidadesStock = findViewById(R.id.txtUnidadesStock);
         btnGuarda = findViewById(R.id.btnGuarda);
         fabEditar = findViewById(R.id.fabEditar);
         fabEditar.setVisibility(View.INVISIBLE);
@@ -54,13 +54,13 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (product != null) {
             txtNombre.setText(product.getNombre());
-            txtTelefono.setText(product.getPrecioUnitario());
-            txtCorreo.setText(product.getUnidadesStock());
+            txtPrecioUnitario.setText(product.getPrecioUnitario());
+            txtUnidadesStock.setText(product.getUnidadesStock());
         }
 
         btnGuarda.setOnClickListener(view -> {
-            if (!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
-                correcto = dbProduct.updateProduct(id, txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreo.getText().toString());
+            if (!txtNombre.getText().toString().equals("") && !txtPrecioUnitario.getText().toString().equals("")) {
+                correcto = dbProduct.updateProduct(id, txtNombre.getText().toString(), txtPrecioUnitario.getText().toString(), txtUnidadesStock.getText().toString());
 
                 if(correcto){
                     Toast.makeText(UpdateActivity.this, "REGISTRO MODIFICADO", Toast.LENGTH_LONG).show();

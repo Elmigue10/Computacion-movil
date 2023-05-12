@@ -12,7 +12,7 @@ import com.cdp.shopapp.helper.DbProduct;
 
 public class CreateActivity extends AppCompatActivity {
 
-    EditText txtNombre, txtTelefono, txtCorreoElectronico;
+    EditText txtNombre, txtPrecioUnitario, txtUnidadesStock;
     Button btnGuarda;
 
     @Override
@@ -21,35 +21,36 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         txtNombre = findViewById(R.id.txtNombre);
-        txtTelefono = findViewById(R.id.txtPrecioUnitario);
-        txtCorreoElectronico = findViewById(R.id.txtUnidadesStock);
+        txtPrecioUnitario = findViewById(R.id.txtPrecioUnitario);
+        txtUnidadesStock = findViewById(R.id.txtUnidadesStock);
         btnGuarda = findViewById(R.id.btnGuarda);
 
-        btnGuarda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnGuarda.setOnClickListener(view -> {
 
-                if(!txtNombre.getText().toString().equals("") && !txtTelefono.getText().toString().equals("")) {
+            if(!txtNombre.getText().toString().equals("") && !txtPrecioUnitario.getText().toString().equals("")) {
 
-                    DbProduct dbProduct = new DbProduct(CreateActivity.this);
-                    long id = dbProduct.createProduct(txtNombre.getText().toString(), txtTelefono.getText().toString(), txtCorreoElectronico.getText().toString());
+                DbProduct dbProduct = new DbProduct(CreateActivity.this);
+                long id = dbProduct.createProduct(txtNombre.getText().toString(),
+                        txtPrecioUnitario.getText().toString(), txtUnidadesStock.getText().toString());
 
-                    if (id > 0) {
-                        Toast.makeText(CreateActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
-                        limpiar();
-                    } else {
-                        Toast.makeText(CreateActivity.this, "ERROR AL GUARDAR REGISTRO", Toast.LENGTH_LONG).show();
-                    }
+                if (id > 0) {
+                    Toast.makeText(CreateActivity.this, "REGISTRO GUARDADO",
+                            Toast.LENGTH_LONG).show();
+                    limpiar();
                 } else {
-                    Toast.makeText(CreateActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateActivity.this, "ERROR AL GUARDAR REGISTRO",
+                            Toast.LENGTH_LONG).show();
                 }
+            } else {
+                Toast.makeText(CreateActivity.this, "DEBE LLENAR LOS CAMPOS OBLIGATORIOS",
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void limpiar() {
         txtNombre.setText("");
-        txtTelefono.setText("");
-        txtCorreoElectronico.setText("");
+        txtPrecioUnitario.setText("");
+        txtUnidadesStock.setText("");
     }
 }

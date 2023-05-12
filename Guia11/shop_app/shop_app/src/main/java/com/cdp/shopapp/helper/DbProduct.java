@@ -20,7 +20,7 @@ public class DbProduct extends DbHelper {
         this.context = context;
     }
 
-    public long createProduct(String nombre, String telefono, String correo_electronico) {
+    public long createProduct(String nombre, String precioUnitario, String unidadesStock) {
 
         long id = 0;
 
@@ -30,8 +30,9 @@ public class DbProduct extends DbHelper {
 
             ContentValues values = new ContentValues();
             values.put("nombre", nombre);
-            values.put("telefono", telefono);
-            values.put("correo_electronico", correo_electronico);
+            values.put("precioUnitario", precioUnitario);
+            values.put("unidadesStock", unidadesStock);
+            values.put("categoria", "cualquiera");
 
             id = db.insert(TABLE_PRODUCT, null, values);
         } catch (Exception ex) {
@@ -50,7 +51,8 @@ public class DbProduct extends DbHelper {
         Product product;
         Cursor productCursor;
 
-        productCursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT + " ORDER BY nombre ASC", null);
+        productCursor = db.rawQuery("SELECT * FROM " + TABLE_PRODUCT + " ORDER BY nombre ASC",
+                null);
 
         if (productCursor.moveToFirst()) {
             do {
@@ -91,7 +93,7 @@ public class DbProduct extends DbHelper {
         return product;
     }
 
-    public boolean updateProduct(int id, String nombre, String telefono, String correo_electronico) {
+    public boolean updateProduct(int id, String nombre, String precioUnitario, String unidadesStock) {
 
         boolean correcto;
 
@@ -99,7 +101,8 @@ public class DbProduct extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("UPDATE " + TABLE_PRODUCT + " SET nombre = '" + nombre + "', telefono = '" + telefono + "', correo_electronico = '" + correo_electronico + "' WHERE id='" + id + "' ");
+            db.execSQL("UPDATE " + TABLE_PRODUCT + " SET nombre = '" + nombre + "', precioUnitario = '" +
+                    precioUnitario + "', unidadesStock = '" + unidadesStock + "' WHERE id='" + id + "' ");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

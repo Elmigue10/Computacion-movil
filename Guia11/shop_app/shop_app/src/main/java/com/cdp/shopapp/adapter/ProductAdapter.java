@@ -39,8 +39,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.viewNombre.setText(productList.get(position).getNombre());
-        holder.viewTelefono.setText(productList.get(position).getPrecioUnitario());
-        holder.viewCorreo.setText(productList.get(position).getUnidadesStock());
+        holder.viewPrecioUnitario.setText(productList.get(position).getPrecioUnitario());
+        holder.viewUnidadesStock.setText(productList.get(position).getUnidadesStock());
     }
 
     public void filtrado(final String txtBuscar) {
@@ -73,14 +73,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView viewNombre, viewTelefono, viewCorreo;
+        TextView viewNombre, viewPrecioUnitario, viewUnidadesStock;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
             viewNombre = itemView.findViewById(R.id.viewNombre);
-            viewTelefono = itemView.findViewById(R.id.viewTelefono);
-            viewCorreo = itemView.findViewById(R.id.viewCorreo);
+            viewPrecioUnitario = itemView.findViewById(R.id.viewPrecioUnitario);
+            viewUnidadesStock = itemView.findViewById(R.id.viewUnidadesStock);
 
             itemView.setOnClickListener(view -> {
                 Context context = view.getContext();

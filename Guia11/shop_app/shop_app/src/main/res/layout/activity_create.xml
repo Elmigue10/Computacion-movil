@@ -16,6 +16,7 @@
             android:id="@+id/viewNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/hint_nombre" />
 
         <EditText
@@ -31,6 +32,7 @@
             android:id="@+id/viewPrecioUnitario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/hint_precio_unitario" />
 
         <EditText
@@ -46,6 +48,7 @@
             android:id="@+id/viewUnidadesStock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/hint_unidades_stock" />
 
         <EditText
@@ -61,7 +64,13 @@
             android:id="@+id/viewCategoria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/hint_categoria" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnGuarda"
@@ -69,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/btn_guarda"
+            android:layout_marginTop="32dp"
             android:textSize="18sp" />
     </LinearLayout>
 </LinearLayout>
