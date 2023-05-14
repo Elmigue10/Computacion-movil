@@ -20,6 +20,7 @@ import android.widget.Toast;
 import dev.miguel.registerapp.R;
 import dev.miguel.registerapp.activity.HomeActivity;
 import dev.miguel.registerapp.helper.DBHelper;
+import dev.miguel.registerapp.model.Usuario;
 
 public class LoginTabFragment extends Fragment {
 
@@ -46,9 +47,14 @@ public class LoginTabFragment extends Fragment {
             loginPassword = view.findViewById(R.id.login_password);
 
             try {
-                if (validateUser(loginEmail.getText().toString(),
-                        cifrarPassword(loginPassword.getText().toString()), db)) {
-                    startActivity(new Intent(view.getContext(), HomeActivity.class));
+                Usuario usuario = validateUser(loginEmail.getText().toString(),
+                        cifrarPassword(loginPassword.getText().toString()), db);
+                if (usuario != null) {
+                    Intent intent = new Intent(view.getContext(), HomeActivity.class);
+                    intent.putExtra("name", usuario.getName());
+                    intent.putExtra("phone", usuario.getPhone());
+                    intent.putExtra("email", usuario.getEmail());
+                    startActivity(intent);
                 } else {
                     Toast.makeText(view.getContext(),
                                     "Credenciales incorrectas, intente de nuevo",
@@ -65,8 +71,8 @@ public class LoginTabFragment extends Fragment {
         });
     }
 
-    private boolean validateUser(String email, String password, SQLiteDatabase db) {
-        String[] projection = {"id", "password"};
+    private Usuario validateUser(String email, String password, SQLiteDatabase db) {
+        String[] projection = {"id", "name", "phone", "email","password"};
         String selection = "email = ?";
         String[] selectionArgs = {email};
         Cursor cursor = db.query(TABLE_USER, projection, selection, selectionArgs, null,
@@ -76,15 +82,18 @@ public class LoginTabFragment extends Fragment {
             String savedPassword =
                     cursor.getString(cursor.getColumnIndexOrThrow("password"));
             if (password.equals(savedPassword)) {
+                String nameUsuario = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String phoneUsuario = cursor.getString(cursor.getColumnIndexOrThrow("phone"));
+                String emailUserUsuario = cursor.getString(cursor.getColumnIndexOrThrow("email"));
                 cursor.close();
                 db.close();
-                return true;
+                return new Usuario(nameUsuario, phoneUsuario, emailUserUsuario);
             } else {
                 cursor.close();
                 db.close();
-                return false;
+                return null;
             }
         }
-        return false;
+        return null;
     }
 }
